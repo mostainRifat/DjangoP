@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block body %}
+<div style="width:80% ; margin : auto">
+    <h2>Welcome to our To-Do App</h2>
+    <br>
+    <p><a href="{% url 'alltasks' %}" class='btn btn-warning'>All Todos</a></p>
+    <p><a href="{% url 'completedtasks' %}" class='btn btn-warning'>Completed Tasks</a></p>
+    <p><a href="{% url 'add' %}" class='btn btn-warning'>Add A New Task</a></p>
+</div>
+{% endblock %}

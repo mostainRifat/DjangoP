@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block body %}
+<div style="width:80% ; margin : auto">
+    <h2>All Your Pending To-Dos</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in alltasksins %}
+            <tr>
+                <td>{{item.id}}</td>
+                <td>{{item.title}}</td>
+                <td>{{item.description}}</td>
+                <td>(Incomplete)</td>
+                <td>
+                    <form method="post" action="{% url 'edit' item.id %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button class='btn btn-warning btn-sm'>Edit</button>
+                    </form>
+
+                    <form method="post" action="{% url 'complete' item.id %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button class='btn btn-success btn-sm'>Complete</button>
+                    </form>
+
+                    <form method="post" action="{% url 'delete' item.id %}" style="display: inline;">
+                        {% csrf_token %}
+                        <button class='btn btn-danger btn-sm'>Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p><a href="{% url 'add' %}">Add Another Task</a></p>
+</div>
+{% endblock %}

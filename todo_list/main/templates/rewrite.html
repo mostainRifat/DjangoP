@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block body %}
+<div style="width:80% ; margin : auto">
+    <h2>Edit Task Page</h2>
+    <h3>{{ ct.title }} : {{ct.description}} </h3>
+    {% if ct.isCompleted is False %}
+    <form method="post" action="{% url 'editbackend' ct.id %}">
+        {% csrf_token %}
+        <input type="text" , name="title" , placeholder="Add Task Title" , value="{{ct.title}}"><br><br>
+        <input type="text" , name="description" , placeholder="Add Task Description" , value="{{ct.description}}"><br><br>
+        <input type="hidden" name="isCompleted" value="False">
+        <input type="submit" class='btn btn-warning'>
+    </form>
+    {% endif %}
+    {% if ct.isCompleted is True %}
+    <form method="post" action="{% url 'editbackendforcompleted' ct.id %}">
+        {% csrf_token %}
+        <input type="text" , name="title" , placeholder="Add Task Title" , value="{{ct.title}}"><br><br>
+        <input type="text" , name="description" , placeholder="Add Task Description" , value="{{ct.description}}"><br><br>
+        <input type="hidden" name="isCompleted" value="False">
+        <input type="submit" class='btn btn-warning'>
+    </form>
+    {% endif %}
+</div>
+
+{% endblock %}

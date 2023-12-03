@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block body %}
+<div style="width:80% ; margin : auto">
+<h2>Add A New Task</h2>
+<form action="{% url 'addbackend' %}" method="post">
+        {% csrf_token %}
+        <input type="text", name="title", placeholder="Add Task Title">
+        <br>  <br>
+        <input type="text", name="description", placeholder="Add Task Description">
+        <br>
+        <input type="hidden" name="isCompleted" value="False">
+        <br>
+        <input type="submit"  class='btn btn-success' >
+    </form>
+</div>
+{% endblock %}
